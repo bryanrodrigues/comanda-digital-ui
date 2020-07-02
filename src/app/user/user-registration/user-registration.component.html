@@ -1,0 +1,134 @@
+<div class="container">
+  <form #f="ngForm" autocomplete="off" (submit)="save(f)">
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <h1>Cadastrar usuário</h1>
+      </div>
+
+      <div class="ui-g-12 ui-fluid">
+        <label>Nome</label>
+        <input pInputText type="text" minlength="5" required maxlength="100" name="name" [(ngModel)]="user.name">
+      </div>
+
+      <div class="ui-g-12 ui-fluid ui-md-12">
+        <label>CPF</label>
+        <p-inputMask mask="999.999.999-99" required minlength="11" name="cpf" [(ngModel)]="user.cpf"></p-inputMask>
+      </div>
+
+
+      <div class="ui-g-12 ui-fluid">
+        <label>Email</label>
+        <input pInputText type="text" name="name" minlength="5" required maxlength="80" placeholder="email@email.com"
+          [(ngModel)]="user.email">
+      </div>
+
+
+      <div class="ui-g-12 ui-fluid ui-md-12">
+        <label>Senha</label>
+        <input type="password" pPassword required minlength="8" pTooltip="Mínimo 8 caracteres e máximo 16."
+          tooltipPosition="top" hideDelay="10000" maxlength="16" name="password" [(ngModel)]="user.password" />
+      </div>
+
+      <div class="ui-g-12 ui-md-6 ui-fluid" *ngIf="auth.hasPermission('ROLE_ADM')">
+        <label>Acesso</label>
+        <p-dropdown [options]="roles" placeholder="Selecione" name="role" required [filter]="true"
+          [(ngModel)]="user.userPermissions"></p-dropdown>
+      </div>
+
+      <div class="ui-g-12">
+        <button pButton label="Salvar" [disabled]="!f.valid" type="submit"></button>
+      </div>
+    </div>
+
+  </form>
+</div>
+
+<div class="container" *ngIf="auth.hasPermission('ROLE_ADM')">
+  <form #f="ngForm" autocomplete="off" (submit)="findStoreUsers()">
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <h1>Lista de usuários de estabelecimentos</h1>
+      </div>
+
+      <div class="ui-g-12 ui-fluid">
+        <label>Nome</label>
+        <input pInputText type="text" required maxlength="100" name="name" [(ngModel)]="name">
+      </div>
+
+      <div class="ui-g-12">
+        <button pButton icon="pi pi-search" label="Pesquisar" type="submit"></button>
+      </div>
+    </div>
+  </form>
+
+
+  <p-table #dt [value]="users" dataKey="idUser" [paginator]="true" [rows]="15" *ngIf="auth.hasPermission('ROLE_ADM')"
+    editMode="row" responsive="true">
+    <ng-template pTemplate="header">
+      <tr>
+        <th class="col-name-store-header">Nome</th>
+        <th>Email</th>
+        <th>CPF</th>
+        <th class="col-acoes">Ação</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-user let-editing="editing" let-ri="rowIndex">
+      <tr [pEditableRow]="user">
+        <td class="col-name-store-header">
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <span class="ui-column-title">Nome</span>
+              <input pInputText type="text" minlength="5" name="name" [(ngModel)]="user.name" required>
+            </ng-template>
+            <ng-template pTemplate="output">
+              <span class="ui-column-title">Nome</span>
+              {{user.name}}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+
+
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <span class="ui-column-title">Email</span>
+              <input pInputText type="text" minlength="5" name="email" [(ngModel)]="user.email" required>
+            </ng-template>
+            <ng-template pTemplate="output">
+              <span class="ui-column-title">Email</span>
+              {{user.email}}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+
+
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <span class="ui-column-title">CPF</span>
+              <p-inputMask mask="999.999.999-99" required minlength="11" name="cpf" [(ngModel)]="user.cpf">
+              </p-inputMask>
+            </ng-template>
+            <ng-template pTemplate="output">
+              <span class="ui-column-title">CPF</span>
+              {{user.cpf}}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+
+        <td style="text-align:center">
+          <button *ngIf="!editing" pButton type="button" pInitEditableRow icon="pi pi-pencil" class="ui-button-info"
+            (click)="onRowEditInit(user)" style="margin-right: 5px;"></button>
+          <button *ngIf="editing" pButton type="button" pSaveEditableRow icon="pi pi-check" class="ui-button-success"
+            style="margin-right: .5em" (click)="onRowEditSave(user)"></button>
+          <button *ngIf="editing" pButton type="button" pCancelEditableRow icon="pi pi-times" class="ui-button-danger"
+            (click)="onRowEditCancel(user, ri)"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+
+
+
+</div>

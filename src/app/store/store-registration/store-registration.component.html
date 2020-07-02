@@ -1,0 +1,73 @@
+<div class="container">
+  <form #f="ngForm" autocomplete="off" (submit)="save(f)"   >
+    <div class="ui-g">
+       <div class="ui-g-12">
+         <h1>Cadastro de Estabelecimento</h1>
+       </div>
+
+       <div class="ui-g-12 ui-fluid ui-md-6">
+         <label>Nome</label>
+         <input  pInputText type="text" name="name" [(ngModel)]="store.name" />
+       </div>
+
+       <div class="ui-g-12 ui-fluid ui-md-6" >
+         <label>CNPJ</label>
+         <p-inputMask mask="99.999.999/9999-99" required name="cnpj" [(ngModel)]="store.cnpj"></p-inputMask>
+       </div>
+
+       <div class="ui-g-12 ui-fluid ui-md-6" >
+        <label>Telefone</label>
+       <!-- <input type="text" pInputText required name="phone" [(ngModel)]="store.phone" /> -->
+         <p-inputMask mask="(99) 99999-9999" required name="phone" [(ngModel)]="store.phone"></p-inputMask>
+      </div>
+
+      <div class="ui-g-12 ui-fluid ui-md-6" >
+        <label>Proprietário</label>
+        <p-dropdown [options]="users" placeholder="Selecione" name="pessoa" required [filter]="true" [(ngModel)]="store.user.idUser"></p-dropdown>
+      </div>
+
+      <div class="ui-g-12">
+        <h3>Endereço</h3>
+      </div>
+
+      <div class="ui-g-12 ui-fluid ui-md-6" >
+        <label>CEP</label>
+        <p-inputMask mask="99999-999" required name="cep" [(ngModel)]="cep" (change)="findAddressByZipCode()"></p-inputMask>
+      </div>
+
+       <div class="ui-g-12 ui-fluid ui-md-6" >
+         <label>Logradouro</label>
+         <input type="text" pInputText required name="logradouro" [(ngModel)]="store.address.logradouro"/>
+       </div>
+
+        <div class="ui-g-12 ui-fluid ui-md-6" >
+          <label>Complemento</label>
+          <input type="text" pInputText required name="complemento" [(ngModel)]="store.address.complemento"/>
+        </div>
+
+
+
+        <div class="ui-g-12 ui-fluid ui-md-6" >
+          <label>Bairro</label>
+          <input type="text" pInputText required name="bairro" [(ngModel)]="store.address.bairro"/>
+        </div>
+
+        <div class="ui-g-12 ui-fluid ui-md-6" >
+          <label>Cidade</label>
+          <input type="text" pInputText required name="localidade" [(ngModel)]="store.address.localidade"/>
+        </div>
+
+
+
+        <div class="ui-g-12 ui-fluid ui-md-6" >
+          <label>UF</label>
+          <input type="text" pInputText required name="uf" [(ngModel)]="store.address.uf"/>
+        </div>
+
+       <div class="ui-g-12">
+         <button pButton label="Salvar" type="submit" ></button>
+       </div>
+     </div>
+
+   </form>
+ </div>

@@ -1,0 +1,155 @@
+<div class="container">
+  <div class="ui-g">
+    <div class="ui-g-12" *ngIf="display">
+      <h1>Comanda atual</h1>
+    </div>
+
+    <div class="ui-g-12" *ngIf="!display">
+      <h2>Nenhuma comanda aberta no momento.</h2>
+    </div>
+
+    <div class="ui-g" *ngIf="display">
+      <div class="ui-g-12">
+        <p-table [value]="productsCard" [responsive]="true">
+
+          <ng-template pTemplate="caption">
+            <tr>
+              <th class="col-center">
+                <div>
+                  #:{{cardInfo.store.name}} | {{cardInfo.user.name}} | Mesa: {{cardInfo.tableNumber}} | Total: R$
+                  {{totalCard | number:'1.2-2'}}
+
+                  <a pButton style="margin-right: 5px;" icon="pi pi-table"
+                  pTooltip="Cardapio" tooltipPosition="top" label="Cardápio"
+                  [routerLink]="['/cardapio/', cardInfo.store.idStore]" ></a>
+
+                </div>
+              </th>
+            </tr>
+          </ng-template>
+
+          <ng-template pTemplate="header">
+            <tr>
+              <th class="col-name-header">Produto</th>
+              <th class="col-situation-header">Situação</th>
+              <th class="col-qtd-header">Quantidade</th>
+              <th class="col-valor-header">Valor Und.</th>
+              <th class="col-valor-header">Valor</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-productCard>
+            <tr>
+
+              <td class="col-name-header" style="font-weight: bold;">
+                <span class="ui-column-title">
+                  Item</span>
+                {{productCard.product.name}}
+              </td>
+              <td class="col-center">
+                <span class="ui-column-title">
+                  Situação</span>
+                <button style="font-size: 10px;" *ngIf="productCard.status == 1" pButton type="button" label="Enviado"
+                  class="ui-button-rounded  ui-button-info"></button>
+                <button style="font-size: 10px;" *ngIf="productCard.status == 2" pButton type="button" label="Peparando"
+                  class="ui-button-rounded  ui-button-warning"></button>
+                <button style="font-size: 10px;" *ngIf="productCard.status == 3" pButton type="button" label="Pronto"
+                  class="ui-button-rounded  ui-button-success"></button>
+              </td>
+
+
+              <td class="col-qtd-header">
+                <span class="ui-column-title">Quantidade</span>
+                {{productCard.amountProduct}}
+              </td>
+              <td class="col-valor-content">
+                <span class="ui-column-title">Valor Und.</span>
+                R$ {{productCard.product.value | number:'1.2-2'}}
+              </td>
+              <td class="col-valor-content">
+                <span class="ui-column-title">Valor</span>
+                R$ {{productCard.product.value *  productCard.amountProduct | number:'1.2-2'}}
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+
+<div class="container">
+  <div class="ui-g">
+    <div class="ui-g-12" *ngIf="displayClosedCards">
+      <h1>Comandas Fechadas</h1>
+    </div>
+
+    <div class="ui-g-12" *ngIf="!displayClosedCards">
+      <h2>Nenhuma comanda fechada.</h2>
+    </div>
+
+    <div class="ui-g" *ngIf="displayClosedCards">
+      <div class="ui-g-12">
+        <p-table [value]="cards" [responsive]="true">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Código</th>
+              <th>Local</th>
+              <th>Qtd. Pessoas</th>
+              <th>Data Inicio</th>
+              <th>Data Fim</th>
+              <th>Número Mesa</th>
+              <th class="col-acoes">Ação</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-card>
+            <tr>
+              <td>
+                <span class="ui-column-title">
+                  Código</span>
+                {{card.idCard}}
+              </td>
+              <td>
+                <span class="ui-column-title">
+                  Local</span>
+                {{card.store.name}}
+              </td>
+              <td>
+                <span class="ui-column-title">
+                  Qtd. Pessoas</span>
+                {{card.amountPeople}}
+              </td>
+
+              <td>
+                <span class="ui-column-title">
+                  Data. Inicio</span>
+                {{card.beginDate  | date:'dd/MM/y HH:mm '}}
+              </td>
+
+              <td>
+                <span class="ui-column-title">
+                  Data. Fim</span>
+                {{card.endDate | date:'dd/MM/y HH:mm '}}
+              </td>
+
+              <td>
+                <span class="ui-column-title">
+                  Nº Mesa</span>
+                {{card.tableNumber}}
+              </td>
+
+              <td class="col-acoes">
+                <span class="ui-column-title">Ação</span>
+                <a pButton style="margin-right: 5px;" icon="pi pi-search" pTooltip="Visualizar" tooltipPosition="top"
+                  [routerLink]="['/comanda/fechada', card.idCard]"></a>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  </div>
+
+</div>

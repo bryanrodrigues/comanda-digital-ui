@@ -1,0 +1,71 @@
+<div class="container">
+
+  <div class="ui-g">
+    <form autocomplete="off" (ngSubmit)="findByTable()">
+      <div class="ui-g-12">
+        <h1>Comandas abertas</h1>
+      </div>
+
+      <div class="ui-g-4 ui-fluid">
+        <label>Numero Mesa</label>
+        <input pInputText type="text" [pKeyFilter]="positiveInt" name="tableNumber"
+          [(ngModel)]="filterCard.tableNumber">
+      </div>
+
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Pesquisar"></button>
+      </div>
+    </form>
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <p-table [value]="cards" [responsive]="true" [paginator]="true" [rows]="15">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Código</th>
+              <th>Cliente</th>
+              <th>Qtd. Pessoas</th>
+              <th>Nº Mesa</th>
+              <th class="col-acoes">Ação</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-card>
+            <tr>
+              <td>
+                <span class="ui-column-title">
+                  Código</span>
+                {{card.idCard}}
+              </td>
+
+              <td>
+                <span class="ui-column-title">
+                  Cliente</span>
+                {{card.user.name}}
+              </td>
+
+              <td>
+                <span class="ui-column-title">
+                  Qtd. Pessoas</span>
+                {{card.amountPeople}}
+              </td>
+
+
+              <td>
+                <span class="ui-column-title">
+                  Número Mesa</span>
+                {{card.tableNumber}}
+              </td>
+
+              <td class="col-acoes">
+                <span class="ui-column-title">Ação</span>
+                <a pButton style="margin-right: 5px;" icon="pi pi-search" pTooltip="Visualizar" tooltipPosition="top"
+                  [routerLink]="['/comanda/aberta', card.idCard]"></a>
+
+              <button pButton icon="pi pi-lock"pButton pTooltip="Fechar" tooltipPosition="top" (click)="close(card)" ></button>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+
+  </div>

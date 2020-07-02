@@ -1,0 +1,90 @@
+<div class="container">
+
+  <div class="ui-g">
+    <form  #f="ngForm" autocomplete="off" (submit)="findByPeriod()" >
+      <div class="ui-g-12">
+          <h1>Comandas fechadas</h1>
+      </div>
+      <div class="ui-g-12">
+        <label style="display: block">Data</label>
+        <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '110px'}" (click)="validateDate()"
+          required name="firstDate" required  [(ngModel)]="firstDate"></p-calendar>
+        <label> até </label>
+        <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '110px'}" (click)="validateDate()"
+        required name="secondDate" required  [(ngModel)]="secondDate"></p-calendar>
+        <p-messages [(value)]="msgs"></p-messages>
+      </div>
+
+
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Pesquisar" [disabled]="valid"></button>
+      </div>
+    </form>
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <p-table [value]="cards" [responsive]="true" [paginator]="true" [rows]="15">
+          <ng-template pTemplate="header" >
+              <tr>
+                  <th>Código</th>
+                  <th>Qtd. Pessoas</th>
+                  <th>Data Inicio</th>
+                  <th>Data Fim</th>
+                  <th>Número Mesa</th>
+                  <th>Cliente</th>
+                  <th class="col-acoes">Ação</th>
+              </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-card>
+              <tr >
+                  <td>
+                    <span class="ui-column-title">
+                    Código</span>
+                    {{card.idCard}}
+                  </td>
+                  <td>
+                    <span class="ui-column-title">
+                    Qtd. Pessoas</span>
+                    {{card.amountPeople}}
+                  </td>
+
+                  <td>
+                    <span class="ui-column-title">
+                    Data. Inicio</span>
+                    {{card.beginDate  | date:'dd/MM/y HH:mm '}}
+                  </td>
+
+                  <td>
+                    <span class="ui-column-title">
+                    Data. Fim</span>
+                    {{card.endDate | date:'dd/MM/y HH:mm '}}
+                  </td>
+
+                  <td>
+                    <span class="ui-column-title">
+                    Número Mesa</span>
+                    {{card.tableNumber}}
+                  </td>
+
+                  <td>
+                    <span class="ui-column-title">
+                    Cliente</span>
+                    {{card.user.name}}
+                  </td>
+
+                  <td class="col-acoes">
+                    <span class="ui-column-title">Ação</span>
+                    <a pButton style="margin-right: 5px;" icon="pi pi-search"
+                      pTooltip="Visualizar" tooltipPosition="top"
+                      [routerLink]="['/comanda/fechada', card.idCard]" ></a>
+                  </td>
+              </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+
+
+
+</div>
+
+

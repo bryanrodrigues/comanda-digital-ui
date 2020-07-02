@@ -1,0 +1,75 @@
+<div class="container">
+
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <h1>Pedidos da cozinha</h1>
+    </div>
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <p-table [value]="productsCard" [responsive]="true">
+
+          <ng-template pTemplate="header">
+            <tr>
+              <th class="col-mesa-header">Horário</th>
+              <th class="col-mesa-header">Mesa</th>
+              <th class="col-name-header">Item</th>
+              <th class="col-qtd-kit-header">Quantidade</th>
+              <th class="col-obs-header">Observação</th>
+              <th class="col-acoes">Ação</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-productCard>
+            <tr [style.font-weight]="productCard.status == 2 ? 'bold' : 'normal'">
+
+              <td class="col-name-header">
+                <span class="ui-column-title">
+                  Horário</span>
+                {{productCard.dateRegistration | date:'HH:mm'}}
+              </td>
+
+              <td class="col-name-header">
+                <span class="ui-column-title">
+                  Mesa</span>
+                {{productCard.card.tableNumber}}
+              </td>
+
+              <td class="col-name-header">
+                <span class="ui-column-title">
+                  Item</span>
+                {{productCard.product.name}}
+              </td>
+
+              <td class="col-valor-content">
+                <span class="ui-column-title">Quantidade</span>
+                <label *ngIf="productCard.dateChange" style="color: tomato;">*</label>
+                {{productCard.amountProduct }}
+
+              </td>
+
+              <td class="col-valor-content col-left">
+                <span class="ui-column-title">Observação</span>
+                {{productCard.note }}
+              </td>
+
+              <td class="col-acoes">
+                <span class="ui-column-title">Ação</span>
+                <button *ngIf="productCard.status == 1" pButton icon="pi pi-sign-in" label="Iniciar"
+                  class="ui-button-success" pTooltip="Iniciar" tooltipPosition="top"
+                  style="margin-right: 5px;" (click)="updateStatus(productCard)"></button>
+
+                <button *ngIf="productCard.status == 2" pButton icon="pi pi-sign-out" label="Finalizar"  style="margin-right: 5px;"
+                  class="ui-button-warning" pTooltip="Finalizar" tooltipPosition="top" (click)="updateStatus(productCard)">
+                </button>
+
+                  <button *ngIf="productCard.status == 2" pButton icon="pi pi-sign-out" label="Parar"
+                  class="ui-button-danger" pTooltip="Parar" tooltipPosition="top" (click)="rollBack(productCard)">
+                </button>
+              </td>
+
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+
+  </div>

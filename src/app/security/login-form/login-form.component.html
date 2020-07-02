@@ -1,0 +1,29 @@
+<div class="container" style="max-width: 400px; margin: auto">
+
+  <form #f="ngForm">
+    <div class="ui-g ui-fluid">
+
+      <div class="ui-g-12">
+        <h1>Login</h1>
+      </div>
+
+      <div class="ui-g-12">
+        <input pInputText name="user" placeholder="CPF"
+          ngModel required #user>
+      </div>
+
+      <div class="ui-g-12">
+        <input pInputText type="password" name="password" placeholder="Senha"
+          ngModel required #password>
+      </div>
+
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Login" [disabled]="!f.valid"
+        (click)="login(user.value, password.value); password.value = ''" > </button>
+
+      </div>
+
+    </div>
+  </form>
+
+</div>

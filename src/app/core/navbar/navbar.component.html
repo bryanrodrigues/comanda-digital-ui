@@ -1,0 +1,76 @@
+<nav class="navbar">
+  <div class="containerNav">
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <a href="javascript:;" class="navbar-toggle" (click)="showMenu = !showMenu"><i class="pi pi-bars"></i></a>
+      </div>
+
+    </div>
+  </div>
+
+  <ul class="navbar-menu" [hidden]="!showMenu">
+
+
+    <li class="navbar-usuario" (click)="showMenu = !showMenu" routerLinkActive="ativo"
+      *ngIf="auth.hasAnyPermission(['ROLE_ESTABELECIMENTO', 'ROLE_ADM', 'ROLE_CLIENTE'])">
+      <a routerLink="/usuario/editar"><i class="pi pi-user-edit"></i> {{auth.jwtPayload?.name}}</a>
+    </li>
+
+    <li class="navbar-menuitem" (click)="showMenu = !showMenu" routerLinkActive="ativo"
+      *ngIf="auth.hasPermission('ROLE_ESTABELECIMENTO')">
+      <a routerLink="/dashboard">Dashboard</a></li>
+
+    <li class="navbar-menuitem" (click)="showMenu = !showMenu" routerLinkActive="ativo"
+      *ngIf="auth.hasPermission('ROLE_CLIENTE')">
+      <a routerLink="/inicio/cliente">Início Cliente</a></li>
+
+    <li class="navbar-menuitem" (click)="showMenu = !showMenu" routerLinkActive="ativo"
+      *ngIf="auth.hasAnyPermission(['ROLE_ESTABELECIMENTO', 'ROLE_ADM'])">
+      <a routerLink="/usuario/novo">Cadastrar Usuário</a></li>
+
+    <li class="navbar-menuitem" (click)="showMenu = !showMenu" routerLinkActive="ativo"
+      *ngIf="auth.hasPermission('ROLE_ESTABELECIMENTO')">
+      <a routerLink="/produtos/novo">Cadastrar Produto</a></li>
+
+    <li class="navbar-menuitem" (click)="showMenu = !showMenu" routerLinkActive="ativo"
+      *ngIf="auth.hasPermission('ROLE_ESTABELECIMENTO')"><a routerLink="/produtos">Pesquisar Produtos</a></li>
+
+    <li class="navbar-menuitem" (click)="showMenu = !showMenu" routerLinkActive="ativo"
+      *ngIf="auth.hasPermission('ROLE_ESTABELECIMENTO')">
+      <a routerLink="/comanda/novo">Cadastrar Comanda</a></li>
+
+    <li class="navbar-menuitem" (click)="showMenu = !showMenu" routerLinkActive="ativo"
+      *ngIf="auth.hasPermission('ROLE_ESTABELECIMENTO')">
+      <a routerLink="/comandas/abertas">Comandas Abertas</a></li>
+
+    <li class="navbar-menuitem" (click)="showMenu = !showMenu" routerLinkActive="ativo"
+      *ngIf="auth.hasPermission('ROLE_ESTABELECIMENTO')">
+      <a routerLink="/comandas/fechadas">Comandas Fechadas</a></li>
+
+    <li class="navbar-menuitem" (click)="showMenu = !showMenu" routerLinkActive="ativo"
+      *ngIf="auth.hasPermission('ROLE_ADM')">
+      <a routerLink="loja/novo">Cadastrar Loja</a></li>
+
+    <li class="navbar-menuitem" (click)="showMenu = !showMenu" routerLinkActive="ativo"
+      *ngIf="auth.hasPermission('ROLE_ADM')">
+      <a routerLink="loja/pesquisar">Pesquisar Loja</a></li>
+
+    <li class="navbar-menuitem" (click)="showMenu = !showMenu" routerLinkActive="ativo"
+      *ngIf="auth.hasPermission('ROLE_ESTABELECIMENTO')">
+      <a routerLink="/cozinha">Cozinha</a></li>
+
+    <li class="navbar-menuitem" (click)="showMenu = !showMenu" routerLinkActive="ativo"
+      *ngIf="auth.hasPermission('ROLE_ESTABELECIMENTO')">
+      <a routerLink="/relatorio/produtos">Relatório produtos</a></li>
+
+      <!--
+      <li class="navbar-menuitem" (click)="showMenu = !showMenu" routerLinkActive="ativo"
+      *ngIf="auth.hasPermission('ROLE_ESTABELECIMENTO')">
+      <a routerLink="/cardapio">Cardápio</a></li> -->
+
+    <li class="navbar-menuitem" (click)="showMenu = !showMenu">
+      <a href="javascript:;" (click)="loggout()">Logout</a></li>
+
+  </ul>
+
+</nav>

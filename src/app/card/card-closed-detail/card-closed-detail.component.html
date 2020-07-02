@@ -1,0 +1,51 @@
+<div class="container">
+
+  <div class="ui-g">
+
+    <div class="ui-g-12">
+      <h1>Comanda fechada!</h1>
+    </div>
+
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <p-table [value]="productsCard" [responsive]="true" [paginator]="true" [rows]="15">
+          <ng-template pTemplate="caption" let-productCard>
+            <div class="ui-helper-clearfix" style="text-align: left">
+              #:{{cardInfo.idCard}} | Cliente: {{cardInfo.user.name}} | Mesa: {{cardInfo.tableNumber}} | Total: R$ {{totalCard | number:'1.2-2'}}
+            </div>
+        </ng-template>
+          <ng-template pTemplate="header" >
+              <tr>
+                  <th class="col-name-header">Produto</th>
+                  <th class="col-qtd-header">Quantidade</th>
+                  <th class="col-valor-header">Valor Und.</th>
+                  <th class="col-valor-header">Valor</th>
+              </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-productCard>
+              <tr>
+                  <td class="col-name-header">
+                    <span class="ui-column-title">
+                    Item</span>
+                    {{productCard.product.name}}
+                  </td>
+                  <td  class="col-qtd-header">
+                    <span class="ui-column-title">Quantidade</span>
+                     {{productCard.amountProduct}}
+                  </td>
+                  <td class="col-valor-content" >
+                    <span class="ui-column-title">Valor Und.</span>
+                    R$ {{productCard.product.value | number:'1.2-2'}}
+                  </td>
+                  <td class="col-valor-content" >
+                    <span class="ui-column-title">Valor</span>
+                    R$ {{productCard.product.value *  productCard.amountProduct | number:'1.2-2'}}
+                  </td>
+              </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+
+</div>
+

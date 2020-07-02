@@ -1,0 +1,176 @@
+<div class="container">
+  <div class="ui-g">
+    <form  #f="ngForm" autocomplete="off" (submit)="listTopSalesDrink()" >
+      <div class="ui-g-12">
+          <h1>Bebidas mais vendidas</h1>
+      </div>
+      <div class="ui-g-12">
+        <label style="display: block">Data</label>
+        <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '110px'}" (click)="validateDateDrink()"
+          required name="firstDate" required  [(ngModel)]="firstDate"></p-calendar>
+        <label> até </label>
+        <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '110px'}" (click)="validateDateDrink()"
+        required name="secondDate" required  [(ngModel)]="secondDate"></p-calendar>
+        <p-messages [(value)]="msgs"></p-messages>
+      </div>
+
+
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Pesquisar" [disabled]="validDrink"></button>
+      </div>
+    </form>
+    <div class="ui-g">
+      <div class="ui-g-12">
+
+        <p-table [value]="drinks" [responsive]="true" [paginator]="true" [rows]="15">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Produto</th>
+              <th>Qtd. Vendida</th>
+              <th>Valor Und.</th>
+              <th>Valor Total</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-drink>
+            <tr>
+              <td>
+                <span class="ui-column-title">
+                  Produto</span>
+                {{drink.name}}
+              </td>
+
+              <td>
+                <span class="ui-column-title">
+                  Qtd. Vendida<</span>
+                {{drink.qtSale}}
+              </td>
+
+              <td>
+                <span class="ui-column-title">
+                  Valor Und.</span>
+                {{drink.unitaryValue| number:'1.2-2'}}
+              </td>
+
+              <td>
+                <span class="ui-column-title">
+                  Valor Total</span>
+                {{drink.totSale | number:'1.2-2'}}
+              </td>
+
+            </tr>
+          </ng-template>
+        </p-table>
+
+
+      </div>
+    </div>
+
+
+
+
+
+    <!--
+    <p-table #dt [columns]="cols" [value]="cars" >
+      <ng-template pTemplate="caption">
+          <div style="text-align: right">
+              <i class="pi pi-search" style="margin:4px 4px 0 0"></i>
+              <input type="text" pInputText size="50" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+          </div>
+      </ng-template>
+      <ng-template pTemplate="header" let-columns>
+          <tr>
+              <th *ngFor="let col of columns">
+                  {{col.header}}
+              </th>
+              <th >
+                aaaaa
+            </th>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData let-columns="columns">
+          <tr [pSelectableRow]="rowData">
+              <td *ngFor="let col of columns">
+                  {{rowData[col.field]}}
+              </td>
+              <td >
+                {{rowData}}
+              </td>
+          </tr>
+      </ng-template>
+  </p-table>
+
+-->
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="ui-g">
+    <form  #f="ngForm" autocomplete="off" (submit)="listTopSalesFood()" >
+      <div class="ui-g-12">
+          <h1>Comidas mais vendidas</h1>
+      </div>
+      <div class="ui-g-12">
+        <label style="display: block">Data</label>
+        <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '110px'}" (click)="validateDateFood()"
+          required name="firstDate" required  [(ngModel)]="firstDate"></p-calendar>
+        <label> até </label>
+        <p-calendar dateFormat="dd/mm/yy" [inputStyle]="{ width: '110px'}" (click)="validateDateFood()"
+        required name="secondDate" required  [(ngModel)]="secondDate"></p-calendar>
+        <p-messages [(value)]="msgs"></p-messages>
+      </div>
+
+
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Pesquisar" [disabled]="validFood"></button>
+      </div>
+    </form>
+    <div class="ui-g">
+      <div class="ui-g-12">
+
+        <p-table [value]="foods" [responsive]="true" [paginator]="true" [rows]="15">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Produto</th>
+              <th>Qtd. Vendida</th>
+              <th>Valor Und.</th>
+              <th>Valor Total</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-drink>
+            <tr>
+              <td>
+                <span class="ui-column-title">
+                  Produto</span>
+                {{drink.name}}
+              </td>
+
+              <td>
+                <span class="ui-column-title">
+                  Qtd. Vendida<</span>
+                {{drink.qtSale}}
+              </td>
+
+              <td>
+                <span class="ui-column-title">
+                  Valor Und.</span>
+                {{drink.unitaryValue| number:'1.2-2'}}
+              </td>
+
+              <td>
+                <span class="ui-column-title">
+                  Valor Total</span>
+                {{drink.totSale | number:'1.2-2'}}
+              </td>
+
+            </tr>
+          </ng-template>
+        </p-table>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

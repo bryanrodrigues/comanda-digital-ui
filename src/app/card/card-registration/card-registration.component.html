@@ -1,0 +1,29 @@
+<div class="container">
+  <form #f="ngForm" autocomplete="off" (submit)="saveCard(f)" >
+    <div class="ui-g">
+       <div class="ui-g-12">
+         <h1>Cadastrar comanda</h1>
+       </div>
+
+       <div class="ui-g-12 ui-fluid">
+         <label>CPF</label>
+         <p-inputMask mask="999.999.999-99" required name="cpf" [(ngModel)]="card.user.cpf" required></p-inputMask>
+       </div>
+
+      <div class="ui-g-12 ui-fluid">
+        <label>Quantidade de Pessoas</label>
+        <input  pInputText type="text" name="amountPeople" [pKeyFilter]="positiveInt" maxlength="3" [(ngModel)]="card.amountPeople" required>
+      </div>
+
+      <div class="ui-g-12 ui-fluid">
+        <label>Número da Mesa</label>
+        <input  pInputText type="text" name="tableNumber" [pKeyFilter]="positiveInt" maxlength="4" [(ngModel)]="card.tableNumber" required>
+      </div>
+
+       <div class="ui-g-12">
+         <button icon="pi pi-plus" pButton label="Cadastrar" type="submit" [disabled]="!f.valid" ></button>
+       </div>
+     </div>
+
+   </form>
+ </div>

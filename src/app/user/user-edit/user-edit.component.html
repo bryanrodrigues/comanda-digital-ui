@@ -1,0 +1,78 @@
+
+<div class="container">
+  <form #f="ngForm" autocomplete="off" (submit)="update()" >
+    <div class="ui-g">
+       <div class="ui-g-12">
+         <h1>Editar conta</h1>
+       </div>
+
+       <div class="ui-g-6 ui-fluid">
+         <label>Nome</label>
+         <input  pInputText type="text" minlength="5" required maxlength="100" name="name" [(ngModel)]="user.name">
+       </div>
+
+       <div class="ui-g-12 ui-fluid ui-md-12" >
+         <label>CPF</label>
+         <p-inputMask mask="999.999.999-99"  disabled required minlength="11"  name="cpf" [(ngModel)]="user.cpf"></p-inputMask>
+       </div>
+
+
+       <div class="ui-g-12 ui-fluid">
+         <label>Email</label>
+         <input  pInputText type="text" name="email" minlength="5" required
+         maxlength="80" placeholder="email@email.com" [(ngModel)]="user.email">
+       </div>
+
+
+       <div class="ui-g-12 ui-fluid ui-md-12" >
+         <label>Senha</label> <label  style="font-size: 12px; color: crimson;"> *Informe a senha para alterar os dados!</label>
+         <input type="password" pPassword feedback required minlength="4" maxlength="16" name="password" [(ngModel)]="user.password"/>
+       </div>
+
+       <div class="ui-g-12">
+         <button pButton label="Salvar" [disabled]="!f.valid" type="submit" ></button>
+         <label  style="font-size: 12px; color: crimson;"> *Ao alterar dados da conta você será redirecionado para tela de login!</label>
+       </div>
+     </div>
+
+   </form>
+
+</div>
+
+<div class="container"  style="background-color: white;">
+
+  <form #fm="ngForm" autocomplete="off" (submit)="updatePassword()" >
+    <div class="ui-g">
+       <div class="ui-g-12">
+         <h1>Alterar senha</h1>
+       </div>
+
+       <div class="ui-g-12 ui-fluid ui-md-12" >
+         <label>Senha atual</label>
+         <input type="password" pPassword required minlength="4" feedback maxlength="16" name="password" [(ngModel)]="userP.password"/>
+       </div>
+
+       <div class="ui-g-12 ui-fluid ui-md-12" >
+        <label>Senha nova</label>
+        <input type="password" pPassword required minlength="4" feedback  maxlength="16"
+            name="firstPassword" [(ngModel)]="firstPassword"/>
+      </div>
+      <div class="ui-g-12 ui-fluid ui-md-12" >
+        <label>Confirmar senha</label>
+        <input type="password" pPassword required minlength="4" feedback   maxlength="16" (keyup)="validatePassword()"
+          name="secondPassword" [(ngModel)]="secondPassword"/>
+      </div>
+
+      <div class="ui-g-12 ui-fluid ui-md-12" >
+        <p-messages [(value)]="msgs"></p-messages>
+      </div>
+
+
+       <div class="ui-g-12">
+         <button pButton label="Salvar" [disabled]="valid" type="submit" ></button>
+         <label  style="font-size: 12px; color: crimson;"> *Ao alterar a senha você será redirecionado para tela de login!</label>
+       </div>
+     </div>
+
+   </form>
+</div>

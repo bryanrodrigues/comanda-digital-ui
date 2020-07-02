@@ -1,0 +1,142 @@
+/* You can add global styles to this file, and also import other style files */
+
+body  {
+  margin: 0;
+  font-family: Arial, Arial, Helvetica, sans-serif;
+  color: #404C51;
+  background-color: whitesmoke;
+}
+
+@media (min-width: 150px){
+body  {
+  margin: 0;
+  font-family: Arial, Arial, Helvetica, sans-serif;
+  color: #404C51;
+  background-color: white;
+}
+}
+
+
+label{
+  font-weight: bold;
+}
+
+a{
+  color: #337ab7;
+  text-decoration: none;
+}
+
+@media (min-width: 1200px){
+  .containerNav{
+    width: 1170px;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 1200px){
+  .container{
+    width: 1170px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px 10px 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+}
+
+@media (min-width: 1200px){
+  .container-adm{
+    width: 1400px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px 10px 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+}
+
+.col-valor-header {
+  width: 120px;
+}
+
+.field-value-column {
+  width: 90px;
+}
+
+.col-qtd-header {
+  width: 90px;
+}
+
+.col-qtd-kit-header {
+  width: 60px;
+}
+
+.col-mesa-header {
+  width: 40px;
+}
+
+.col-valor-content {
+  text-align: right;
+}
+
+.col-data-header {
+  width: 120px;
+}
+
+.col-name-header {
+  width: 120px;
+}
+
+.col-obs-header {
+  width: 140px;
+}
+
+.col-name-store-header {
+  width: 200px;
+}
+
+.col-data-content {
+  text-align: center;
+}
+
+.col-acoes {
+  margin: 0;
+  text-align: center;
+  width: 100px;
+}
+
+.col-cor-status{
+  color: #404C51;
+}
+
+.col-center {
+  text-align: center;
+}
+
+.col-center {
+  text-align: center;
+}
+
+.col-left {
+  text-align: left;
+}
+
+.col-situation-header {
+  width: 60px;
+}
+
+
+.areaTexto{
+  float:left;
+  max-width:500px;
+  margin-left:10px;
+}
+
+.areaImagem{
+  float:left;
+  margin-top:10px;
+}
+
+.align-div{
+  align-items: center
+}

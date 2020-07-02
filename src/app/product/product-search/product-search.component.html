@@ -1,0 +1,104 @@
+<div class="container">
+
+  <div class="ui-g">
+    <form autocomplete="off" (ngSubmit)="find()">
+      <div class="ui-g-12">
+          <h1>Pesquisar produtos</h1>
+      </div>
+
+
+      <div class="ui-g-12 ui-fluid">
+        <label>Nome</label>
+        <input pInputText type="text" maxlength="100" name="name" [(ngModel)]="filter.name">
+      </div>
+
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Pesquisar"></button>
+      </div>
+    </form>
+
+
+<p-table #dt [value]="products" dataKey="idProduct" [paginator]="true" [rows]="15"
+  editMode="row" responsive="true">
+    <ng-template pTemplate="header">
+        <tr>
+          <th>Nome</th>
+          <th>Categoria</th>
+          <th>Descrição</th>
+          <th class="col-valor-header">Valor</th>
+          <th class="col-acoes">Ação</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product let-editing="editing" let-ri="rowIndex">
+        <tr [pEditableRow]="product">
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <span class="ui-column-title">Nome</span>
+                        <input pInputText type="text" minlength="5" [(ngModel)]="product.name" required>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        <span class="ui-column-title">Nome</span>
+                        {{product.name}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+
+            <td>
+              <p-cellEditor>
+                  <ng-template pTemplate="input">
+                      <span class="ui-column-title">Categoria</span>
+                      <p-dropdown [options]="productTypes" placeholder="Selecione" name="productType" required [filter]="true"
+                      [(ngModel)]="product.type.idProductType"></p-dropdown>
+                  </ng-template>
+                  <ng-template pTemplate="output">
+                      <span class="ui-column-title">Categoria</span>
+                      {{product.type.description}}
+                  </ng-template>
+              </p-cellEditor>
+            </td>
+
+
+            <td>
+              <p-cellEditor>
+                  <ng-template pTemplate="input">
+                    <span class="ui-column-title">Descrição</span>
+                      <textarea pInputTextarea rows="3" minlength="5"  name="description" [(ngModel)]="product.description"></textarea>
+                  </ng-template>
+                  <ng-template pTemplate="output">
+                      <span class="ui-column-title">Descrição</span>
+                      {{product.description}}
+                  </ng-template>
+              </p-cellEditor>
+          </td>
+
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <span class="ui-column-title">Valor</span>
+                        <input pInputText type="text" placeholder="0,00"  class="field-value-column"
+                          name="value" currencyMask [options]="{prefix: 'R$ ', thousands: '.', decimal:',' , 'allowNegative': false}"
+                          [(ngModel)]="product.value" >
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      <span class="ui-column-title">Valor</span>
+                      R$ {{product.value  | number:'1.2-2'}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td style="text-align:center">
+
+                <button *ngIf="!editing" pButton type="button" pInitEditableRow icon="pi pi-pencil" class="ui-button-info" (click)="onRowEditInit(product)" style="margin-right: 5px;"></button>
+                <button *ngIf="editing" pButton type="button" pSaveEditableRow icon="pi pi-check" class="ui-button-success" style="margin-right: .5em" (click)="onRowEditSave(product)"></button>
+                <button *ngIf="editing" pButton type="button" pCancelEditableRow icon="pi pi-times" class="ui-button-danger" (click)="onRowEditCancel(product, ri)"></button>
+                <button *ngIf="!editing" pButton icon="pi pi-trash"pButton pTooltip="Apagar" tooltipPosition="top" (click)="disable(product)" ></button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+
+
+</div>
+
+</div>
