@@ -1,3 +1,4 @@
+import { ReportBillingComponent } from './report/report-billing/report-billing.component';
 import { StoreSearchComponent } from './store/store-search/store-search.component';
 
 import { CardAddComponent } from './card/card-add/card-add.component';
@@ -107,11 +108,13 @@ const routes: Routes = [
   data:{roles: ['ROLE_ESTABELECIMENTO']}
   },
 
-  { path: 'cardapio/:idStore',
-  component: MenuComponent,
-  canActivate:[AuthGuard]//,
-  //data:{roles: ['ROLE_ESTABELECIMENTO']}
+  { path: 'relatorio/faturamento',
+  component: ReportBillingComponent,
+  canActivate:[AuthGuard],
+  data:{roles: ['ROLE_ESTABELECIMENTO']}
   },
+
+  { path: 'cardapio/:idStore',  component: MenuComponent },
 
   { path: 'pagina-nao-encontrada', component: PageNotFoundComponent },
 

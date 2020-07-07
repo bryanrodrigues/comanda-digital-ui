@@ -114,7 +114,6 @@ export class AuthService {
     return this.http.delete(this.tokensRevokeUrl, {withCredentials: true})
       .toPromise()
       .then(() => {
-        console.log('entrou no revoke');
         this.cleanAccessToken();
       })
   }

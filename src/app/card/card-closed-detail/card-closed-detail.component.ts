@@ -35,7 +35,7 @@ export class CardClosedDetailComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.listProductCard(this.route.snapshot.params['idStore']);
+    this.listProductCard(this.route.snapshot.params['idCard']);
 
   }
 

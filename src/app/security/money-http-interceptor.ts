@@ -1,4 +1,4 @@
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpHeaders } from '@angular/common/http';
 import { Observable, from } from 'rxjs';
 import { mergeMap, reduce } from 'rxjs/operators';
 import { AuthService } from './auth.service';
@@ -10,12 +10,11 @@ export class NotAuthenticatedError { }
 @Injectable()
 export class MoneyHttpInterceptor implements HttpInterceptor {
 
-  constructor(private auth: AuthService, private router : Router) { }
+  constructor(private auth: AuthService, private router: Router) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-  if (!req.url.includes('/oauth/token') && this.auth.isInvalidAccessToken()) {
-
+    if (!req.url.includes('/oauth/token') && this.auth.isInvalidAccessToken() && !req.url.includes('/menu/find/store/') ) {
       return from(this.auth.getNewAccessToken())
         .pipe(
           mergeMap(() => {

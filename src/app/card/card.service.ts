@@ -5,7 +5,7 @@ import { Card, ProductCard } from '../core/model';
 
 export class CardFilter{
 
-  idStore =     1;
+  idStore:     number;
   name:       string;
   tableNumber: number;
   beginDate: Date;
@@ -58,7 +58,7 @@ export class CardService {
   closeCard(card: Card): Promise<Card>{
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-    return this.http.post(`${this.urlCard}/closeCard`, card, {headers})
+    return this.http.put(`${this.urlCard}/closeCard`, card, {headers})
     .toPromise()
     .then(reponse=> reponse['content']);
 
@@ -122,7 +122,7 @@ export class CardService {
 
   editProductCard(productCard: ProductCard): Promise<ProductCard>{
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.http.post(`${this.urlProductCard}/update/product`, productCard, {headers})
+    return this.http.put(`${this.urlProductCard}/update/product`, productCard, {headers})
     .toPromise()
     .then();
   }

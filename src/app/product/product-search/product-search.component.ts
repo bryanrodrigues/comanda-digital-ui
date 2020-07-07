@@ -61,7 +61,6 @@ export class ProductSearchComponent implements OnInit {
     this.productService.list(this.filter)
     .then(response => {
       this.products = response;
-      console.log('products ' + JSON.stringify(this.products));
     })
     .catch(error => this.errorHandlerService.handle(error));
   }
@@ -92,7 +91,6 @@ export class ProductSearchComponent implements OnInit {
 
 onRowEditSave(product: Product) {
     if (product.value > 0) {
-      console.log('clone: ' + JSON.stringify(this.clonedProducts[product.idProduct]));
 
       delete this.clonedProducts[product.idProduct];
 

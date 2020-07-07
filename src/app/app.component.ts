@@ -18,7 +18,7 @@ export class AppComponent {
   }
 
   showNavBar(){
-    return this.router.url !== '/login';
+    return this.router.url !== '/login' && !this.router.url.includes('/cardapio');
   }
 
 }

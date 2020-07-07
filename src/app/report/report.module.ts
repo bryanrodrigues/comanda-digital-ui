@@ -1,3 +1,5 @@
+import { DropdownModule } from 'primeng/dropdown';
+import { TooltipModule } from 'primeng/tooltip';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReportProductComponent } from './report-product/report-product.component';
@@ -13,10 +15,11 @@ import { CalendarModule } from 'primeng/calendar';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 import { MenuComponent } from './menu/menu.component';
+import { ReportBillingComponent } from './report-billing/report-billing.component';
 
 
 @NgModule({
-  declarations: [ReportProductComponent, DashboardComponent, MenuComponent],
+  declarations: [ReportProductComponent, DashboardComponent, MenuComponent, ReportBillingComponent],
   imports: [
     CommonModule,
     CurrencyMaskModule,
@@ -28,7 +31,9 @@ import { MenuComponent } from './menu/menu.component';
     RouterModule,
     CalendarModule,
     MessagesModule,
-    MessageModule
+    MessageModule,
+    TooltipModule,
+    DropdownModule
   ],
   exports: [ReportProductComponent]
 })

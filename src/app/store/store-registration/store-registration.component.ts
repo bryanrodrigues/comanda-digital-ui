@@ -51,7 +51,6 @@ export class StoreRegistrationComponent implements OnInit {
   }
 
   findAddressByZipCode(){
-    console.log('entrou');
     if(this.cep !== ""){
       this.storeSevice.findAddressByZipCode(this.cep)
         .then(response => {
@@ -61,7 +60,6 @@ export class StoreRegistrationComponent implements OnInit {
           }
         })
     }else{
-      console.log('cep nulo ' );
     }
 
   }

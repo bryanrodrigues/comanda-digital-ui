@@ -111,7 +111,6 @@ export class CardAddComponent implements OnInit {
       this.cardFilter.idStore = this.idStore;
       this.cardservice.cardDetail(this.cardFilter.idStore,  idCard)
         .then(resposne => {
-          console.log('entrou no repsonse cardDetail ');
           this.cardInfo = resposne;
         })
         .catch(error => this.errorHandlerService.handle(error));

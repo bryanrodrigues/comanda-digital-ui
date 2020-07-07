@@ -36,7 +36,7 @@ export class StoreService {
   }
 
   update(store: Store): Promise<any>{
-    return this.http.post(`${this.urlStore}/update`, store)
+    return this.http.put(`${this.urlStore}/update`, store)
     .toPromise()
     .then(response => response['content']);
   }
@@ -55,7 +55,7 @@ export class StoreService {
   }
 
   disable(store: Store){
-    return this.http.post(`${this.urlStore}/enable/disable`, store)
+    return this.http.put(`${this.urlStore}/enable/disable`, store)
     .toPromise()
     .then(response => response['content']);
 
