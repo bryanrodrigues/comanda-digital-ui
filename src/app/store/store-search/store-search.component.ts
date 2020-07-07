@@ -62,7 +62,6 @@ export class StoreSearchComponent implements OnInit {
   }
 
 onRowEditSave(store: Store, address: Address) {
-    console.log('clone: ' + JSON.stringify(this.clonedStore[store.idStore]));
     delete this.clonedStore[store.idStore];
 
     this.storeService.update(store)

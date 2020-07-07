@@ -36,7 +36,6 @@ export class UserRegistrationComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    console.log('Pelo menos eentra aui?');
     if(this.auth.hasPermission('ROLE_ADM')){
       this.listAllroles();
       this.listAllStoreUsers();
@@ -101,10 +100,9 @@ onRowEditSave(user: User) {
 
     delete this.clonedUsers[user.idUser];
 
-    console.log('User: ' + JSON.stringify(this.user));
     this.userService.updateByAdmin(user)
       .then( () => {
-        this.toasty.success('Produto alterado com sucesso!');
+        this.toasty.success('Usuário alterado com sucesso!');
         //this.list();
       } )
       .catch(error => this.erroHandlerService.handle(error));
@@ -114,7 +112,7 @@ onRowEditSave(user: User) {
 onRowEditCancel(user: User, index: number) {
     this.users[index] = this.clonedUsers[user.idUser];
     delete this.clonedUsers[user.idUser];
-    this.toasty.warning('Produto não atualizado!');
+    this.toasty.warning('Usuário não atualizado!');
 }
 
 disable(user: User){

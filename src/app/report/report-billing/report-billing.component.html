@@ -1,0 +1,79 @@
+<div class="container">
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <form  #f="ngForm" autocomplete="off" (submit)="listAnnualBilling()" >
+        <div class="ui-g-12">
+            <h1>Faturamento por período</h1>
+        </div>
+
+        <div class="ui-g-12">
+          <label style="display: block">Data</label>
+
+          <p-calendar [(ngModel)]="firstPeriod" name="firstPeriod" view="month" dateFormat="mm/yy"
+            [yearNavigator]="true" yearRange="2000:2030"  ></p-calendar>
+
+          <label> até </label>
+
+          <p-calendar [(ngModel)]="secondPeriod" name="secondPeriod" view="month" dateFormat="mm/yy"
+            [yearNavigator]="true" yearRange="2000:2030" ></p-calendar>
+
+        </div>
+
+
+        <div class="ui-g-12">
+          <button pButton type="submit" label="Pesquisar" ></button>
+        </div>
+      </form>
+    </div>
+
+
+    <div class="ui-g-12">
+
+      <p-chart type="bar" height="300px" [data]="data"></p-chart>
+
+    </div>
+
+    <div class="ui-g-12">
+      <p-table [value]="annualBilling" [responsive]="true" [paginator]="true" [rows]="15">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Período</th>
+            <th>Categoria</th>
+            <th>Qtd</th>
+            <th>Total</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-annualBilling>
+          <tr>
+            <td>
+              <span class="ui-column-title">
+                Período</span>
+              {{annualBilling.mes }}
+            </td>
+
+            <td>
+              <span class="ui-column-title">
+                Categoria</span>
+              {{annualBilling.descricaoCategoria}}
+            </td>
+
+            <td>
+              <span class="ui-column-title">
+                Qtd</span>
+              {{annualBilling.qtd}}
+            </td>
+
+            <td>
+              <span class="ui-column-title">
+                Total</span>
+               R$ {{ annualBilling.totFaturado | number:'1.2-2'}}
+            </td>
+
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+
+
+  </div>
+</div>

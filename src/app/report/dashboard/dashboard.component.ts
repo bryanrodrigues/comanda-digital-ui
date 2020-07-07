@@ -93,8 +93,6 @@ export class DashboardComponent implements OnInit {
           this.basicInfo.totBilling = 0;
         }
 
-
-        console.log('Basic Info' + JSON.stringify(this.basicInfo));
       })
       .catch(error => this.errorHandlerService.handle(error));
   }

@@ -49,6 +49,14 @@ export class ProductService {
     .then(response => response);
   }
 
+  listMenu(filter: ProductFilter): Promise<any>{
+    const headers = new HttpHeaders().set('Authorization' , '');
+
+    return this.http.get(`${this.urlProduct}/menu/find/store/${filter.idStore}`, {headers})
+    .toPromise()
+    .then(response => response);
+  }
+
   listTypes(): Promise<any>{
     return this.http.get(`${this.urlProductType}/listAll`)
     .toPromise()
@@ -58,7 +66,7 @@ export class ProductService {
   disable(product: Product): Promise<Product>{
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-    return this.http.post(`${this.urlProduct}/disable`, product, {headers})
+    return this.http.put(`${this.urlProduct}/disable`, product, {headers})
       .toPromise()
       .then(reponse=> reponse['content']);
   }
@@ -66,7 +74,7 @@ export class ProductService {
   update(product: Product): Promise<Product>{
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-    return this.http.post(`${this.urlProduct}/update`, product, {headers})
+    return this.http.put(`${this.urlProduct}/update`, product, {headers})
       .toPromise()
       .then(reponse=> reponse['content']);
   }

@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {  FormsModule } from '@angular/forms';
+import { Component } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Router } from '@angular/router';
 import { ToastyService } from 'ng2-toasty';
 @Component({

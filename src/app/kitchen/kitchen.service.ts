@@ -29,14 +29,14 @@ export class KitchenService {
 
   updateStatus(productCard: ProductCard){
 
-    return this.http.post(`${this.urlProductCard}/update/status`, productCard)
+    return this.http.put(`${this.urlProductCard}/update/status`, productCard)
       .toPromise()
       .then(reponse=> reponse['content']);
   }
 
   rollBack(productCard: ProductCard){
 
-    return this.http.post(`${this.urlProductCard}/update/status/rollBack`, productCard)
+    return this.http.put(`${this.urlProductCard}/update/status/rollBack`, productCard)
       .toPromise()
       .then(reponse=> reponse['content']);
   }

@@ -61,7 +61,7 @@ export class UserService {
   update(user: User){
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-    return this.http.post(`${this.userUrl}/update`, user, {headers})
+    return this.http.put(`${this.userUrl}/update`, user, {headers})
       .toPromise()
       .then(response => response['content']);
   }
@@ -69,7 +69,7 @@ export class UserService {
   updateByAdmin(user: User){
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-    return this.http.post(`${this.userUrl}/updateByAdmin`, user, {headers})
+    return this.http.put(`${this.userUrl}/updateByAdmin`, user, {headers})
       .toPromise()
       .then(response => response['content']);
   }
@@ -77,7 +77,7 @@ export class UserService {
   updatePassword(user: UserChangePassword){
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-    return this.http.post(`${this.userUrl}/changePassword`, user, {headers})
+    return this.http.put(`${this.userUrl}/changePassword`, user, {headers})
       .toPromise()
       .then(response => response['content']);
   }

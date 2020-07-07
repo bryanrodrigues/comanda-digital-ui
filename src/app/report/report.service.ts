@@ -43,4 +43,11 @@ export class ReportService {
       .then(response => response);
   }
 
+
+  listAnnualBilling(params : any): Promise<any> {
+    return this.http.post(`${this.urlReport}/reportBillingInfoByStore`, params)
+      .toPromise()
+      .then(reponse => reponse);
+  }
+
 }

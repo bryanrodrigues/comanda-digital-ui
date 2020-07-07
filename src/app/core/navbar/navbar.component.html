@@ -49,11 +49,11 @@
 
     <li class="navbar-menuitem" (click)="showMenu = !showMenu" routerLinkActive="ativo"
       *ngIf="auth.hasPermission('ROLE_ADM')">
-      <a routerLink="loja/novo">Cadastrar Loja</a></li>
+      <a routerLink="loja/novo">Cadastrar Comércio</a></li>
 
     <li class="navbar-menuitem" (click)="showMenu = !showMenu" routerLinkActive="ativo"
       *ngIf="auth.hasPermission('ROLE_ADM')">
-      <a routerLink="loja/pesquisar">Pesquisar Loja</a></li>
+      <a routerLink="loja/pesquisar">Pesquisar Comércio</a></li>
 
     <li class="navbar-menuitem" (click)="showMenu = !showMenu" routerLinkActive="ativo"
       *ngIf="auth.hasPermission('ROLE_ESTABELECIMENTO')">
@@ -63,12 +63,14 @@
       *ngIf="auth.hasPermission('ROLE_ESTABELECIMENTO')">
       <a routerLink="/relatorio/produtos">Relatório produtos</a></li>
 
-      <!--
       <li class="navbar-menuitem" (click)="showMenu = !showMenu" routerLinkActive="ativo"
       *ngIf="auth.hasPermission('ROLE_ESTABELECIMENTO')">
-      <a routerLink="/cardapio">Cardápio</a></li> -->
+      <a routerLink="/relatorio/faturamento">Relatório faturamento</a></li>
 
-    <li class="navbar-menuitem" (click)="showMenu = !showMenu">
+
+
+
+    <li class="navbar-menuitem" (click)="showMenu = !showMenu" *ngIf="auth.hasAnyPermission(['ROLE_ESTABELECIMENTO', 'ROLE_ADM', 'ROLE_CLIENTE'])">
       <a href="javascript:;" (click)="loggout()">Logout</a></li>
 
   </ul>

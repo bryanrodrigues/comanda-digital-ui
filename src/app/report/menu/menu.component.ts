@@ -39,7 +39,7 @@ export class MenuComponent implements OnInit {
 
   listMenuByStore(idStore : number){
     this.productFilter.idStore = idStore;
-    this.productService.list(this.productFilter)
+    this.productService.listMenu(this.productFilter)
       .then(response => {
         this.cars = response;
       })

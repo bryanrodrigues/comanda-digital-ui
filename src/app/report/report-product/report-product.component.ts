@@ -46,7 +46,7 @@ export class ReportProductComponent implements OnInit {
   }
 
   listTopSalesDrink() {
-    this.topSalesParams = { 'idStore': this.idStore, 'firstDate': this.firstDate, 'secondDate': this.secondDate, 'type': 1 };
+    this.topSalesParams = { 'idStore': this.idStore, 'firstDate': this.firstDate, 'secondDate': this.secondDate, 'type': 2 };
     this.reportService.listTopSalesByStore(this.topSalesParams)
       .then(response => {
         this.drinks = response;
